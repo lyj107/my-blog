@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1c1b1a;
+  background-color: #f0ede8;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1bbb0;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8b857c;
+}
+
+::selection {
+  background: #c44536;
+  color: #fff;
+}
+
+/* Element Plus overrides for cohesive design */
+.el-button--primary {
+  --el-button-bg-color: #c44536;
+  --el-button-border-color: #c44536;
+  --el-button-hover-bg-color: #a83a2d;
+  --el-button-hover-border-color: #a83a2d;
+  --el-button-active-bg-color: #8e3025;
+  --el-button-active-border-color: #8e3025;
+}
+
+.el-menu {
+  border-right: none !important;
+}
+
+.el-table {
+  --el-table-border-color: #e5dfd5;
+  --el-table-header-bg-color: #f3efe8;
+  --el-table-header-text-color: #3d3a36;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.el-table th.el-table__cell {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.el-tag {
+  border-radius: 100px;
+}
+
+.el-dialog {
+  border-radius: 12px;
+}
+
+.el-card {
+  border-radius: 12px;
+  border: 1px solid #e5dfd5;
+}
+
+/* Page transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
