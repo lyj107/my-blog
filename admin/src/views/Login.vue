@@ -17,71 +17,98 @@
         <div class="form-field">
           <label>用户名</label>
           <div class="input-wrap">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
             </svg>
-            <input v-model="form.username" type="text" placeholder="请输入用户名" autocomplete="username" />
+            <input
+              v-model="form.username"
+              type="text"
+              placeholder="请输入用户名"
+              autocomplete="username"
+            />
           </div>
         </div>
 
         <div class="form-field">
           <label>密码</label>
           <div class="input-wrap">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
-            <input v-model="form.password" type="password" placeholder="请输入密码" autocomplete="current-password" />
+            <input
+              v-model="form.password"
+              type="password"
+              placeholder="请输入密码"
+              autocomplete="current-password"
+            />
           </div>
         </div>
 
         <button type="submit" class="login-btn" :disabled="loading">
           <span v-if="!loading">登 录</span>
           <span v-else class="loading-dots">
-            登录中<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+            登录中<span class="dot">.</span><span class="dot">.</span
+            ><span class="dot">.</span>
           </span>
         </button>
       </form>
 
-      <div class="login-hint">
+      <!-- <div class="login-hint">
         <span>默认账号</span>
         <code>admin</code>
         <span>/</span>
         <code>admin123</code>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import { auth } from '../api'
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { auth } from "../api";
 
-const router = useRouter()
-const loading = ref(false)
+const router = useRouter();
+const loading = ref(false);
 
 const form = reactive({
-  username: '',
-  password: ''
-})
+  username: "",
+  password: "",
+});
 
 const handleLogin = async () => {
   if (!form.username || !form.password) {
-    return
+    return;
   }
 
-  loading.value = true
+  loading.value = true;
   try {
-    const response = await auth.login(form)
-    localStorage.setItem('token', response.data.token)
-    localStorage.setItem('userInfo', JSON.stringify(response.data.user))
-    router.push('/')
+    const response = await auth.login(form);
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+    router.push("/");
   } catch (error) {
-    alert(error.response?.data?.message || '登录失败')
+    alert(error.response?.data?.message || "登录失败");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 </script>
 
 <style scoped>
@@ -136,8 +163,13 @@ const handleLogin = async () => {
 }
 
 @keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(30px, -30px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, -30px);
+  }
 }
 
 .login-card {
@@ -164,7 +196,7 @@ const handleLogin = async () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
@@ -172,7 +204,7 @@ const handleLogin = async () => {
 }
 
 .login-title {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 1.6rem;
   font-weight: 600;
   color: #1c1b1a;
@@ -269,12 +301,22 @@ const handleLogin = async () => {
   animation: blink 1.4s infinite;
 }
 
-.loading-dots .dot:nth-child(2) { animation-delay: 0.2s; }
-.loading-dots .dot:nth-child(3) { animation-delay: 0.4s; }
+.loading-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loading-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes blink {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
 }
 
 .login-hint {
@@ -290,7 +332,7 @@ const handleLogin = async () => {
 }
 
 .login-hint code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   background: #f3efe8;
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
