@@ -148,3 +148,6 @@ VITE_ADMIN_URL=http://localhost:5174/
 
 上传图片无法访问：
 确认 `UPLOAD_PATH=uploads`，并通过 `/uploads/文件名` 访问。后端会自动创建上传目录。
+
+##在线演示地址
+http://121.40.25.56:10087/
